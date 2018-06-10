@@ -1,0 +1,19 @@
+nimble:
+  server:
+    port: 7905
+
+  eureka:
+    client:
+      service-url:
+        defaultZone: http://localhost:7900/eureka
+    instance:
+      hostname: localhost
+      instance-id: ${spring.application.name}:${server.port}
+
+  spring:
+    application:
+      name: gateway
+
+  logging:
+    level:
+      root: info

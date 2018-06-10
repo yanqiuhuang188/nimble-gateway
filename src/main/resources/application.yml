@@ -1,0 +1,29 @@
+server:
+  port: ${nimble.server.port}
+
+spring:
+  application:
+    name: ${nimble.spring.application.name}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${nimble.eureka.client.service-url.defaultZone}
+  instance:
+    hostname: ${nimble.eureka.instance.hostname}
+    instance-id: ${nimble.eureka.instance.instance-id}
+
+zuul:
+  host:
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 60000
+  ignored-services: provider
+  routes:
+    user:
+      path: /user/**
+      service-id: consumer
+
+logging:
+  level:
+    root: ${nimble.logging.level.root}
+
