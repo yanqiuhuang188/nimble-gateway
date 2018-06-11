@@ -4,11 +4,16 @@ server:
 spring:
   application:
     name: ${nimble.spring.application.name}
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
 
 eureka:
   client:
     service-url:
       defaultZone: ${nimble.eureka.client.service-url.defaultZone}
+    registry-fetch-interval-seconds: 3
   instance:
     hostname: ${nimble.eureka.instance.hostname}
     instance-id: ${nimble.eureka.instance.instance-id}
@@ -22,8 +27,15 @@ zuul:
     user:
       path: /user/**
       service-id: consumer
+  retryable: true
 
 logging:
   level:
     root: ${nimble.logging.level.root}
 
+
+gateway:
+  ribbon:
+    MaxAutoRetries: 1
+    MaxAutoRetriesNextServer: 2
+    OkToRetryOnAllOperations: true
