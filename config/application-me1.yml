@@ -2,17 +2,17 @@ nimble:
   server:
     port: 7905
 
-  eureka:
-    client:
-      service-url:
-        defaultZone: http://localhost:7900/eureka
-    instance:
-      hostname: localhost
-      instance-id: ${spring.application.name}:${server.port}
-
   spring:
     application:
       name: gateway
+
+  eureka:
+    client:
+      service-url:
+        defaultZone: http://eureka1:7901/eureka,http://eureka2:7902/eureka
+    instance:
+      hostname: localhost
+      instance-id: ${spring.application.name}:${server.port}
 
   zuul:
     host:
